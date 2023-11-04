@@ -7,6 +7,7 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from bs4 import BeautifulSoup
 from time import sleep
+from tqdm import tqdm
 
 
 def verifica_email(email):
@@ -23,7 +24,7 @@ while verifica_email(email) != True:
     print("Email inváldo! Confira se está no formato gmail ou houve erro de dígito.\n")
     email = str(input("Seu email para o envio do arquivo: "))
 
-print("Iniciando...\n")
+print("\n\033[1;38mIniciando...\033[m\n")
 
 planilha = openpyxl.Workbook()
 planilha.create_sheet('Valores')
@@ -44,7 +45,7 @@ while True:
     soup = BeautifulSoup(navegador.page_source, 'html.parser')
     itens = soup.find_all('div', attrs={'class': 'a-section a-spacing-small puis-padding-left-small puis-padding-right-small'})
     
-    for item in itens:
+    for item in tqdm(itens):
         produtos = item.find('span', attrs={'class': 'a-size-base-plus a-color-base a-text-normal'})
         reais = item.find('span', attrs={'class': 'a-price-whole'})
         centavos = item.find('span', attrs={'class': 'a-price-fraction'})
@@ -64,7 +65,7 @@ while True:
         yag = yagmail.SMTP('Testesdepython@gmail.com', 'jdqx yguk zapp sgkd')
 
         # Destinatário e assunto do email
-        destinatario = email
+        destinatario = 'Testesdepython@gmail.com'
         assunto = 'Busca feita'
 
         # Corpo do email
@@ -83,5 +84,4 @@ while True:
 
         break
 
-print("Fim da busca! Planilha feita.")
-print("Email enviado com sucesso!")
+print("\033[32m\nFim da busca! Planilha feita.\nEmail enviado com sucesso!\033[m")
