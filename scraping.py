@@ -17,6 +17,28 @@ def verifica_email(email):
         return True
     else:
         return False
+    
+def enviar_email(destino):
+    yag = yagmail.SMTP('Testesdepython@gmail.com', 'jdqx yguk zapp sgkd')
+
+    # Destinatário e assunto do email
+    destinatario = destino
+    assunto = 'Busca feita'
+
+    # Corpo do email
+    corpo_email = "Segue o arquivo com os preços dos produtos atualizados."
+
+    # Anexos
+    anexos = ['web_scraping.xlsx']  # Substitua pelo caminho do seu arquivo
+
+    # Enviar o email
+    yag.send(
+        to=destinatario,
+        subject=assunto,
+        contents=corpo_email,
+        attachments=anexos
+        )
+
 
 email = str(input("Seu email para o envio do arquivo: "))
 
@@ -37,16 +59,16 @@ navegador = webdriver.Chrome(service=servico)
 navegador.get(site)
 sleep(2)
 
-navegador.find_element(By.XPATH, '//*[@id="twotabsearchtextbox"]').send_keys('smartphones samsung')
+navegador.find_element(By.XPATH, '//*[@id="twotabsearchtextbox"]').send_keys('aliança casal')
 navegador.find_element(By.XPATH, '//*[@id="nav-search-submit-button"]').click()
 sleep(1)
 
 while True:
     soup = BeautifulSoup(navegador.page_source, 'html.parser')
-    itens = soup.find_all('div', attrs={'class': 'a-section a-spacing-small puis-padding-left-small puis-padding-right-small'})
+    itens = soup.find_all('div', attrs={'class': 'a-section a-spacing-small puis-padding-left-micro puis-padding-right-micro'})
     
     for item in tqdm(itens):
-        produtos = item.find('span', attrs={'class': 'a-size-base-plus a-color-base a-text-normal'})
+        produtos = item.find('h2', attrs={'class': 'a-size-mini a-spacing-none a-color-base s-line-clamp-2'})
         reais = item.find('span', attrs={'class': 'a-price-whole'})
         centavos = item.find('span', attrs={'class': 'a-price-fraction'})
 
@@ -62,26 +84,7 @@ while True:
     else:
         navegador.quit()
         planilha.save('web_scraping.xlsx')
-        yag = yagmail.SMTP('Testesdepython@gmail.com', 'jdqx yguk zapp sgkd')
-
-        # Destinatário e assunto do email
-        destinatario = 'Testesdepython@gmail.com'
-        assunto = 'Busca feita'
-
-        # Corpo do email
-        corpo_email = "Segue o arquivo com os preços dos produtos atualizados."
-
-        # Anexos
-        anexos = ['web_scraping.xlsx']  # Substitua pelo caminho do seu arquivo
-
-        # Enviar o email
-        yag.send(
-            to=destinatario,
-            subject=assunto,
-            contents=corpo_email,
-            attachments=anexos
-        )
-
+        enviar_email(email)
         break
 
 print("\033[32m\nFim da busca! Planilha feita.\nEmail enviado com sucesso!\033[m")
