@@ -1,7 +1,7 @@
-# Projeto de Web Scraping de Preços de Celulares
+# Projeto de Web Scraping de Alianças
 
 # Descrição do Projeto
-Este projeto consiste em um aplicativo Python que realiza web scraping em sites de comércio eletrônico para coletar informações sobre preços de celulares, armazena esses dados em uma planilha e envia um resumo por e-mail. Ele é útil para acompanhar as flutuações de preços de celulares em lojas online.
+Este projeto consiste em um aplicativo Python que realiza web scraping em sites de comércio eletrônico para coletar informações sobre preços de alianças, armazena esses dados em uma planilha e envia um resumo por e-mail. Ele é útil para acompanhar as flutuações de preços de alianças em lojas online.
 
 # Funcionalidades
 Realiza web scraping de sites de comércio eletrônico para coletar informações sobre preços de celulares.
