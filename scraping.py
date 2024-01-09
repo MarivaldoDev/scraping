@@ -17,7 +17,8 @@ def verifica_email(email):
         return True
     else:
         return False
-    
+
+
 def enviar_email(destino):
     yag = yagmail.SMTP('Testesdepython@gmail.com', 'jdqx yguk zapp sgkd')
 
@@ -53,13 +54,13 @@ planilha.create_sheet('Valores')
 tabela = planilha['Valores']
 tabela.append(['Produto', 'Valor'])
 
-site = 'https://www.amazon.com.br/'
+site = 'https://www.amazon.com.br'
 servico = Service(ChromeDriverManager().install())
 navegador = webdriver.Chrome(service=servico)
 navegador.get(site)
-sleep(2)
+sleep(10)
 
-navegador.find_element(By.XPATH, '//*[@id="twotabsearchtextbox"]').send_keys('aliança casal')
+navegador.find_element(By.XPATH, '//*[@id="twotabsearchtextbox"]').send_keys('aliança namoro')
 navegador.find_element(By.XPATH, '//*[@id="nav-search-submit-button"]').click()
 sleep(1)
 
@@ -72,7 +73,7 @@ while True:
         reais = item.find('span', attrs={'class': 'a-price-whole'})
         centavos = item.find('span', attrs={'class': 'a-price-fraction'})
 
-        if produtos and reais and centavos:    
+        if produtos and reais and centavos:   
             tabela.append([produtos.text, f'R$ {reais.text}{centavos.text}'])
 
     proxima = soup.find('a', attrs={'class': 's-pagination-item s-pagination-next s-pagination-button s-pagination-separator'})
