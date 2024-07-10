@@ -12,7 +12,10 @@ Envia o resumo por e-mail para o destinatário especificado.
 # Site utilizado
 https://www.amazon.com.br/
 
+# Acompanhe
+https://github.com/MarivaldoDev/scraping/assets/126726979/ea337c58-19a5-465a-95a2-ecca0a095513
+
 # Contato
 Autor: Marivaldo Pedro
 <br>
-E-mail: Pedromarivaldo10@gmail.com
+E-mail: marivaldo.pedro.dev@outlook.com
